@@ -1,0 +1,11 @@
+{% extends "base-login.html" %}
+
+{% block main %}
+<div class = "container5">
+  <h1 class="page-header">Admin</h1>
+    {% include 'flash_messages.html' %}
+    <a href="{{url_for('freport')}}" class="btn btn-primary btn-block">Friend(s) Report</a>
+    <a href="{{url_for('greport')}}" class="btn btn-primary btn-block">Group(s) Report</a>
+    <a href="{{url_for('preport')}}" class="btn btn-primary btn-block">Post(s) Report</a>
+</div>
+{% endblock %}

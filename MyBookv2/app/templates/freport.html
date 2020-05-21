@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<h1><center>Friend(s) Report</center></h1>
+<h2><center>Published on {{d}} at {{t}}</center></h2>
+<head>
+<button onClick="exportTableToCSV('Post Report.csv')">Export to CSV File</button>
+<style>
+	table,
+	th,
+	td{padding: 10px;
+		border:2px solid black;
+		border-collapse: collapse;
+	button{cursor:pointer;margin-top:1rem;}
+	</style>
+<script>
+function downloadCSV(csv, filename){
+	var csvFile;
+	var downloadLink;
+
+	csvFile = new Blob([csv],{type:"text/csv"});
+	downloadLink = document.createElement("a");
+	downloadLink.download = filename;
+	downloadLink.href = window.URL.createObjectURL(csvFile);
+	downloadLink.style.display="none";
+
+	document.body.appendChild(downloadLink);
+
+	downloadLink.click();
+}
+function exportTableToCSV(filename){
+	var csv = []
+	var rows = document.querySelectorAll("table tr");
+
+	for(var i=0;i<rows.length;i++){
+		var row = [], cols = rows[i].querySelectorAll("td, th");
+		for(var j=0; j<cols.length; j++)
+			row.push(cols[j].innerText);
+
+		csv.push(row.join(","));
+	}
+
+	//download csv file
+	downloadCSV(csv.join("\n"), filename);
+
+}
+
+</script>
+</head>
+<button onClick="exportTableToCSV('Post Report.csv')">Export to CSV File</button>
+<body>
+<table>
+	<tr>
+		<th style="text-align:center">User Id</th>
+		<th style="text-align:center">First Name</th>
+		<th style="text-align:center">Last Name</th>
+		<th style="text-align:center">Number of Friend(s)</th>
+	</tr>
+	{%for i in info%}
+	<tr>
+		<td style="text-align:center">{{i[0]}}</td>
+		<td style="text-align:center">{{i[1]}}</td> 
+		<td style="text-align:center">{{i[2]}}</td>
+		<td style="text-align:center">{{i[3]}}</td>
+	</tr>
+	{%endfor%} 
+</table>
+</body>
+</html>
+
+
+

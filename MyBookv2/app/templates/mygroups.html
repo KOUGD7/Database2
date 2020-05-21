@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container10">
+	<div id = "holder">
+				<h1>My Group(s)<h1>
+
+				{%for i in info%}
+
+					<p class="com3"> {{i[1]}} </p>
+					<p class="com">Created By: {{i[3]}} {{i[4]}}</p>
+					<p class="com">Created On: {{i[2]}}</p>
+					<form action="{{ url_for('dgroup',userid=userid) }}" method="post">
+
+    				{{ form.csrf_token}}
+      					<div class="form-group">
+							<input type="hidden" value={{i[0]}} name="Encrypt"/>
+							<input type="submit" value="View Group" name="Decrypt"/>
+							<input type="hidden" value={{i[5]}} name="gOwner"/>
+						</div>
+					</form>
+				{%endfor%}
+	</div>
+</div>
+{% endblock %}

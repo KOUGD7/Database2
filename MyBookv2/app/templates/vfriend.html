@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<div id = "holder">
+	<h1>Friend(s) List<h1>	
+		<div class = "friendslist">
+		<div class="container4">
+			<div class="image-container1">
+				{%for i in fren_stuff%}
+  					<form action="{{ url_for('vfrenprofile',userid=userid) }}" method="post">
+	
+					<img src="{{url_for('static',filename="" + i[3]) }}"/>
+					<input type="hidden" value={{i[0]}} name="Friendid"/>
+	
+					<p>{{i[1]}} {{i[2]}}</p>
+					<button type="submit" name="submit" class="fd-btn">View Profile 
+					</button>
+					</form>
+				{%endfor%}
+			</div>	
+			</div>	
+		</div>
+	</div>	
+{% endblock %}
+ 

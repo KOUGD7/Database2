@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container9">
+  <div class="container6">
+    <h1 class="page-header">Create Post</h1>
+      {% include 'flash_messages.html' %}
+      <form action="{{ url_for('cpost',userid=userid) }}" method="post"method="post"action="/process-file" enctype="multipart/form-data">
+       {{ form.csrf_token}}
+        <div class="form-group1">
+          {{ form.description.label}}
+          {{ form.description(class='form-control', placeholder="Enter your comment")}}
+        </div>
+        <br></br>
+        <h3 class="com2">Select Group</h3>
+     
+        <select name = 'autocomplete_group' id="id_datalist" class="about-p1">
+          {% for entry in groups %}
+            <option value={{ entry[0] }}>{{ entry[1] }}</option>
+          {% endfor %}
+        </select>
+
+      <br></br>
+      <div class="com1">
+      <h3 class="page-header"></h3>
+      <div class="form-group1">
+        {{ form.photo.label}}
+        {{ form.photo(class='form-control', placeholder="Enter your comment")}}
+      </div>
+    </div>
+      <div class="container8">
+      <button type="submit" name="submit" class="fd-btn">Create Post</button>
+    </div>
+    </form>
+  </div>  
+</div>
+{% endblock %}

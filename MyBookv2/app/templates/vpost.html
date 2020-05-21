@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container12">
+<div id = "holder">
+
+<h1>My Post(s)<h1>
+
+{%for i in pos_t%}
+	{%for m in i[4]%}
+	<div class="container10">
+		<p class="com1">Group Name:{{i[6]}}</p>
+		<img src="{{url_for('static',filename="" + m) }}"/>
+
+	{%endfor%} 
+	<p class="com2"><br></br>{{i[1]}} {{i[2]}} {{i[3]}}</p>
+	</div>
+
+	<div class="container11">
+	<form action="{{ url_for('vpost',userid=userid) }}" method="post">
+  	{{ form.csrf_token}}
+      <div class="form-group">
+        {{ form.usr_text(class='form-control', placeholder="Enter your comment")}}
+        {{ form.pi_d(class='form-control',value=i[0])}}
+		
+        <!-- <input type="hidden" id="status" name="status" value={{i[3]}}/> -->
+      </div>
+	<button type="submit" name="submit" class="btn btn-primary btn-block">Add Comment</button>
+	</form>
+	</div>
+	<div class="container3">
+		{%for w in i[5]%}
+			<p class="com">{{w[0]}} {{w[1]}} {{w[2]}} {{w[4]}} {{w[5]}}<br></br></p>
+		{%endfor%}
+    </div>
+{%endfor%} 
+
+</div>
+</div>
+</div>
+{% endblock %}

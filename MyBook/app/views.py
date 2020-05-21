@@ -231,7 +231,7 @@ def addfriend(userid):
     groups1 = {'Relative':'1','School':'2','Work':'3'}
     if request.method =='POST':
         files = request.form.getlist("g_id")
-        print(("LISTTTTTTTTT"), files)
+        #print(("LISTTTTTTTTT"), files)
         f_id = request.form.get('Encrypt')
         #_groupname = request.form['group']
         #_groupid = groups1[_groupname]
@@ -277,7 +277,7 @@ def vfriend(userid):
     
     info.sort(key=lambda x:x[2])
     info.sort(key=lambda x:x[1])
-    print(userid)
+   
     return render_template('vfriend.html',fren_stuff=info,userid=userid)
  
 @app.route('/groups/<int:userid>', methods=['GET', 'POST'])
@@ -293,7 +293,7 @@ def groups(userid):
         gr_result=cur.fetchall()
 
         info=[]
-        print(gr_result)
+        
         for g in gr_result:
             gid,gname = g
             cur = mysql.connection.cursor()
@@ -488,7 +488,7 @@ def dgroup(userid):
         #cur = mysql.connection.cursor()
         #cur.execute("INSERT INTO joins(user_id, group_id, join_date) VALUES (%s ,%s, %s)", (userid, g_id,joindate))
         #mysql.connection.commit()
-        print("DGROUP", g_owner)
+        
         if g_owner:
             g_owner = int(g_owner)
 
@@ -703,7 +703,7 @@ def mygroups(userid):
     mysql.connection.commit()
     info.sort(key=lambda x:x[1])
     form = GroupForm() 
-    print(("MYGROUP", gowner_id))
+    
     return render_template('mygroups.html', userid = userid,info=info,form=form, creator = gowner_id)
     #return render_template('mygroups.html', userid = userid,info=info,form=form)
 

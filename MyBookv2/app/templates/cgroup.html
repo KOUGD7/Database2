@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container9">
+	<div id = "holder">
+		<div class="container6">
+			<h1>Create Group</h1>
+
+			{% include 'flash_messages.html' %}
+    		<form action="{{ url_for('cgroup',userid=userid) }}" method="post">
+  				{{ form.csrf_token }}
+    			<div class="form-group">
+        			{{ form.groupname.label}}
+     				{{ form.groupname(class='form-control', placeholder="Enter Group Name") }}
+      			</div>
+      
+      			<div class="container8">
+      				<button type="submit" name="submit" class="about-p2" >Next</button>
+      			</div>
+    		</form>
+  		</div>
+  	</div>	
+</div>  	
+{% endblock %}

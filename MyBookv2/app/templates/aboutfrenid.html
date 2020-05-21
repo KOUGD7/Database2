@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container9">
+	<div id = "holder">
+		<div class="container6">
+
+		<input type="hidden" value={{fid}} name="Friendid"/>
+
+		<h1>ABOUT<h1>
+
+ 		<p class="about-p">Nickname: {{profile[0][2]}} 		</p>
+ 		<p class="about-p">Date of Birth: {{profile[0][0]}} 	</p>
+ 		<p  class="about-p">Gender: {{profile[0][1]}} 		</p>
+
+		 <h1>Mailing Address:</h1>
+ 		{%for a in address%}
+ 			<p class="about-p">{{a[0]}} </p>
+ 			<p class="about-p">{{a[1]}} </p>
+ 			<p class="about-p">{{a[2]}}  </p>
+		{%endfor%}
+
+		<h1>Contact:</h1>
+			{%for p in phone%}
+ 				<p class="about-p">{{p[0]}} {{p[1]}}</p>
+			{%endfor%}
+		</div>	
+	</div>	
+</div>
+
+{% endblock %}
